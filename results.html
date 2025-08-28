@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Results</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script defer src="results.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Your Nova Report</h2>
+    <div id="results-container" class="pill-list"></div>
+    <div class="actions">
+      <button class="btn" onclick="downloadPDF()">Download PDF</button>
+      <a class="btn outline" href="payhip.html">Go to Book Store</a>
+    </div>
+    <form class="email-form" action="https://formspree.io/f/mpwlvjog" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required />
+      <input type="hidden" id="selectedTraitsField" name="selected_traits" value="" />
+      <button class="btn" type="submit">Send My Report</button>
+    </form>
+  </div>
+</body>
+</html>
