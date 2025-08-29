@@ -2,17 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nova Intro</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nova — Find Your Way</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 </head>
 <body>
-  <div class="intro-screen container">
-    <h1>Welcome to Nova</h1>
-    <p class="subtitle">Discover your signature traits.</p>
-    <!-- Optional: place voice-intro.mp3 in root to auto-play if desired -->
-    <button class="btn" onclick="startNova()">Get Started</button>
-  </div>
+  <header>
+    <h1>✨ NOVA</h1>
+    <p class="tagline">Welcome to Nova — a quick journey to clarify your traits and activate your purpose.</p>
+  </header>
+
+  <!-- Stepper Nav -->
+  <nav class="steps">
+    <button class="step active" data-target="#intro">Intro</button>
+    <button class="step" data-target="#traits">Traits</button>
+    <button class="step" data-target="#summary">Summary</button>
+    <button class="step" data-target="#book">Purpose Book</button>
+  </nav>
+
+  <!-- INTRO -->
+  <section id="intro" class="panel active">
+    <div class="intro-wrap">
+      <div class="intro-left">
+        <h2>Start here</h2>
+        <p>Press play and take a deep breath. When you’re ready, continue to select your core traits.</p>
+        <div class="audio">
+          <audio id="introAudio" controls preload="auto">
+            <source src="assets/nova_intro_sample.mp3" type="audio/mpeg"/>
+          </audio>
+          <div class="tiny">If audio doesn't auto‑play, press ▶️.</div>
+        </div>
+        <div class="actions">
+          <button id="toTraits">Continue → Traits</button>
+        </div>
+      </div>
+      <div class="intro-right">
+        <div class="card">
+          <h3>Get your Nova PDF</h3>
+          <p>Your selections will generate a clean, branded PDF you can keep or share.</p>
+          <ul class="checklist">
+            <li>50 curated traits</li>
+            <li>Beautiful dark theme</li>
+            <li>One‑click PDF export</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Stay in the loop</h3>
+          <form id="emailForm" action="https://formspree.io/f/xbldzpnk" method="POST" target="_blank">
+            <label>Email<br/><input type="email" name="email" placeholder="you@domain.com" required /></label>
+            <button type="submit">Notify me about Nova</button>
+          </form>
+          <div class="tiny">We use Formspree for secure submissions.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAITS -->
+  <section id="traits" class="panel">
+    <h2>Select your traits</h2>
+    <p class="muted">Pick as many as resonate. You can always come back and edit.</p>
+    <div id="traitGrid" class="grid"></div>
+    <div class="actions">
+      <button id="clearTraits" class="ghost">Clear</button>
+      <button id="toSummary">Continue → Summary</button>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="summary" class="panel">
+    <h2>Your Nova Summary</h2>
+    <div class="summary">
+      <div class="kv"><div class="k">Name</div><div class="v"><input id="userName" placeholder="(optional)"/></div></div>
+      <div class="kv"><div class="k">Email</div><div class="v"><input id="userEmail" placeholder="(optional)"/></div></div>
+      <div class="kv wide"><div class="k">Selected Traits</div><div id="selectedTraits" class="v"></div></div>
+    </div>
+    <div class="actions">
+      <button id="downloadPDF">Download Nova PDF</button>
+      <button id="backToTraits" class="ghost">Back to Traits</button>
+    </div>
+  </section>
+
+  <!-- BOOK / PAYHIP -->
+  <section id="book" class="panel">
+    <h2>Ready to go deeper?</h2>
+    <p class="muted">The Purpose Book is a friendly guide to discovering, naming, and activating your purpose.</p>
+    <a class="book-cta" href="https://payhip.com/b/N7Lvg" target="_blank" rel="noopener">Get the Purpose Book on Payhip</a>
+    <div class="actions">
+      <button class="ghost" data-target="#intro">Restart</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© Nova Labs — All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
